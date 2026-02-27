@@ -72,7 +72,7 @@ class Users:
                 user["phone"] = phone.strip()
                 user["city"] = city.strip()
                 return user.copy()
-            raise ValueError(f"User with id={user_id} not found")
+        raise ValueError(f"User with id={user_id} not found")
 
     def search_user(self, query: str) -> list[dict]:
         q = query.strip().lower()
@@ -139,7 +139,7 @@ def cli_loop():
 
         if len(parts) == 0:
             continue
-        
+
         else:
             cmd = parts[0]
 #save/exit
@@ -152,8 +152,9 @@ def cli_loop():
             print("Commands:")
             print("add - add new user")
             print("get <id> - get user card by id")
+            print("list - show all users")
             print("delete <id> - delete user by id")
-            print("updrade <id> - upgrade user information by id")
+            print("updade <id> - updade user information by id")
             print("search <text> - search user information")
             print("exit - save and exit")
 
@@ -237,7 +238,7 @@ def cli_loop():
             if len(parts) < 2:
                 print("Usage search <text>")
                 continue
-            
+
             query = " ".join(parts[1:])
 
             try:
@@ -247,6 +248,9 @@ def cli_loop():
                     print(f'{user["id"]}. {user["name"]} tel.:{user["phone"]} from: {user["city"]}')
             except ValueError as e:
                 print(f"Error: {e}")
+
+        else:
+            print("Unknown command. Type 'help'.")
 
 if __name__ == "__main__":
     cli_loop()
